@@ -1,0 +1,23 @@
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+.Sidebar {
+    padding: 25px;
+    gap: 10px;
+    width: 200px;
+    align-self: flex-start;
+}
+
+.LoginHeader {
+    padding: 20px;
+}
+
+.Sidebar .nav-item .active {
+    background-color: coral;
+}
+
+.postForm {
+    padding: 20px;
+}
