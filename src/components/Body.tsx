@@ -21,7 +21,6 @@ export default function Body({ sidebar, makepost, children }: BodyProps) {
                 </Container>
             </Stack>
         </Container>
-
     )
 
 }

@@ -14,8 +14,14 @@ export default function PostsPage({endpoint, heading}: Poststable) {
     const [ postsArray, setPostsArray ] = useState<PostItem[]>([]) 
 
     useEffect(() => {
+        {console.log(localStorage.getItem('token'))}
         (async () => {
-            const res = await fetch(`${base_api_url}${endpoint}`)
+            const res = await fetch(`${base_api_url}${endpoint}`, {
+                method: 'GET',
+                headers: {
+                    'x-access-token': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             if (res.ok) {
                 const data = await res.json()
                 setPostsArray(data)

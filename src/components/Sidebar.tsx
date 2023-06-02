@@ -2,11 +2,22 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom"
 import { AuthContext } from "../contexts/UserProvider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 export default function Sidebar() {
 
-    const { user } = useContext(AuthContext)
+    const { user, setUser } = useContext(AuthContext)
+
+    useEffect(()=>{
+        const storedToken = localStorage.getItem('token')
+        if (storedToken && !user.token) {
+            setUser({
+                loggedIn: true, 
+                token: storedToken, 
+                username: localStorage.getItem('username') || ''
+            })
+        }
+    },[])
 
     return (
         <Navbar sticky="top" className="flex-column Sidebar">
@@ -17,7 +28,7 @@ export default function Sidebar() {
                 <Nav.Link as={NavLink} to='/workouts'>Workouts</Nav.Link>
             </Nav.Item>
             {
-                user.token 
+                user.token || localStorage.getItem('token')
                 ? (
                     <>
                         <Nav.Item>
@@ -28,9 +39,14 @@ export default function Sidebar() {
                         </Nav.Item>
                     </>
                 ) : (
-                    <Nav.Item>
-                        <Nav.Link as={NavLink} to='/login'>Login</Nav.Link>
-                    </Nav.Item>
+                    <>
+                        <Nav.Item>
+                            <Nav.Link as={NavLink} to='/register'>Register</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={NavLink} to='/login'>Login</Nav.Link>
+                        </Nav.Item>
+                    </>
                 )
             }
         </Navbar>

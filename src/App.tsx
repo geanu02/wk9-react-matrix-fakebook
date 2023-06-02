@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage"
 import UserPage from "./components/UserPage"
 import AllPosts from "./components/AllPosts"
 import Logout from "./components/Logout"
+import Register from "./pages/Register"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' element={ <AllPosts /> } />
           <Route path='/posts' element={ <AllPosts /> } />
           <Route path='/workouts' element={ <Workout /> } />
+          <Route path='/register' element={ <Register />} />
           <Route path='/login' element={ <LoginPage />} />
           <Route path='/logout' element={ <Logout />} />
           <Route path='/user/:username' element={ <UserPage /> } />
